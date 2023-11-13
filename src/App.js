@@ -1,4 +1,4 @@
-import './App.css';
+import './CustomSytles.css';
 import NavBar from './components/NavBar';
 
 function App() {
