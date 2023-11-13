@@ -1,4 +1,5 @@
 import './CustomSytles.css';
+import Input from './components/Input';
 import MonthSlider from './components/MonthSlider';
 import NavBar from './components/NavBar';
 
@@ -8,6 +9,7 @@ function App() {
         <NavBar/>
         <div className='home'>
                 <MonthSlider/>
+                <Input/>
         </div>
     </div>
   );
