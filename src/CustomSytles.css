@@ -4,5 +4,13 @@
         gap: 1rem;
 }
 .home{
+        display: flex;
+        flex-direction: column;
         padding: 0px 20px;
+        gap: 1rem;
+}
+.customInputField{
+        background-color: whitesmoke;
+        height:3rem;
+        border-radius:5px;
 }
