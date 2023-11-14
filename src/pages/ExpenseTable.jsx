@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
 import { green,grey,red } from '@mui/material/colors';
 
-import {StyledTableCell} from "../CustomStyles.js"
+import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
         const {rows,cols} = useContext(BudgetDataContext)
 
