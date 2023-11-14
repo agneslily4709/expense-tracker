@@ -8,7 +8,7 @@ import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutl
 const MonthSlider = () => {
   return (
         <Box sx={{ flexGrow: 1}}>
-        <AppBar position="static" sx={{p:1,backgroundColor:"#e6c2bf",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-between'}}>
+        <AppBar position="static" sx={{p:1,backgroundColor:"#e6c2bf",height:"55px",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-between'}}>
         <Button variant="text"><ArrowCircleLeftOutlinedIcon sx={{ fontSize: 40 }}/></Button>
             <Typography variant="h6" sx={{p:1}}><Box component="span" sx={{ fontWeight: "bold"}}>January - 2023</Box></Typography>
             <Button variant="text"><ArrowCircleRightOutlinedIcon sx={{ fontSize: 40 }}/></Button>
