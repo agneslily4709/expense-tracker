@@ -3,6 +3,7 @@ import Input from './components/Input';
 import MonthSlider from './components/MonthSlider';
 import NavBar from './components/NavBar';
 import BudgetContext from './context/budgetContext';
+import ExpenseTable from './pages/ExpenseTable'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <div className='home'>
                 <MonthSlider/>
                 <Input/>
+                <ExpenseTable/>
         </div>
         </BudgetContext>
     </div>
