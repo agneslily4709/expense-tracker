@@ -13,35 +13,40 @@ import { green,grey,red } from '@mui/material/colors';
 
 import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
-        const {rows,cols} = useContext(BudgetDataContext)
+        const {rows,cols,setRows} = useContext(BudgetDataContext)
+        const handleDelete = (id) => {
+                setRows((prevRows) => prevRows.filter((ele) =>ele.id!==id))
+        }
+        const handleEdit = (id) => {
 
+        }
   return (
         <>
-         <div style={{ height: 400, width: '100%' }}>
-         <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+         <Paper sx={{ width: '100%',height:440,overflowY:"scroll"}}>
+         <TableContainer sx={{ minHeight: 440 }}>
+                <Table stickyHeader aria-label="sticky table">
                         <TableHead>
-                                <TableRow sx={{border:`2px solid ${grey[900]}`}}>
+                                <TableRow sx={{border:`px solid ${grey[900]}`}}>
                                 {cols.map((col) => (<StyledTableCell  key={col.field} align='center'  sx={{ fontWeight: "bold",fontSize:20}}> {col.headerName} </StyledTableCell>))}
                                 </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row) => (
-                        <TableRow sx={{backgroundColor:`${(row.type === "in" ? green[100] : red[100])}`, border:`2px solid ${grey[900]}`}} key={row.id} >
-                        <StyledTableCell align='center'> {row.date} </StyledTableCell>
-                        <StyledTableCell  align="center">{row.category}</StyledTableCell>
-                        <StyledTableCell align="center">{row.amount}</StyledTableCell>
-                        <StyledTableCell align="center">{row.description}</StyledTableCell>
-                        <StyledTableCell align="center">
-                                <Button variant='contained' color='success'><EditIcon/></Button>
-                                <Button variant='contained' color='error'> <DeleteIcon/></Button>
-                        </StyledTableCell>
-                        </TableRow>
-                        ))}
-                        </TableBody>
+                                {rows && rows.map((row,idx) => (
+                                        <TableRow sx={{backgroundColor:`${(row.type? green[100] : red[100])}`, border:`2px solid ${grey[900]}`}} key={idx} >
+                                        <StyledTableCell align='center'> {row.date} </StyledTableCell>
+                                        <StyledTableCell  align="center">{row.category}</StyledTableCell>
+                                        <StyledTableCell align="center">{row.amount}</StyledTableCell>
+                                        <StyledTableCell align="center">{row.description}</StyledTableCell>
+                                        <StyledTableCell align="center">
+                                                <Button variant='contained' color='success' onClick={() => handleEdit(row.id)}><EditIcon/></Button>
+                                                <Button variant='contained' color='error'onClick={() => handleDelete(row.id)}> <DeleteIcon/></Button>
+                                        </StyledTableCell>
+                                        </TableRow>
+                                        ))}
+                        </TableBody>    
                 </Table>
     </TableContainer>
-    </div>
+    </Paper>
         </>    
 
   )
