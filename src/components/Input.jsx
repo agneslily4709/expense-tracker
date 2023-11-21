@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext, useEffect } from 'react'
 import { BudgetDataContext } from '../context/budgetContext.js'
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Input = () => {
-        const {setRows} = useContext(BudgetDataContext)
+        const {setRows,editData} = useContext(BudgetDataContext)
 
         const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Others"]
         const [data,setData] =  useState({id:"",date:"",type:true,category:"",amount:"",description:"",})
@@ -28,23 +28,28 @@ const Input = () => {
                 setRows((prevRows) => [...prevRows, data]);
                 setData({id:"",date:"",type:true,category:"",amount:"",description:""})
         }
-
+        
+  useEffect(() => {
+        if (editData) {
+          setData(editData);
+        }
+      }, [editData]);
   return (
         <Box sx={{ flexGrow: 1}} component="form" noValidate>
         <AppBar position="static" sx={{p:1, height:"75px",backgroundColor:"#004aad",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-around',alignItems:"center"}}>
         <LocalizationProvider dateAdapter={AdapterDayjs} >
-      <DatePicker format="DD-01-2023" defaultValue={dayjs("01-01-2023")} 
+      <DatePicker format="DD-01-2023" defaultValue={dayjs("2023-01-01")} 
  className='customInputField' name='date' onChange={(newValue) =>{
         setData({...data,date:`${newValue.$D}-${newValue.$M+1}-${newValue.$y}`})
         console.log(newValue.$D)
       }}/>
     </LocalizationProvider>
-          <FormControlLabel className='customInputField' control={<Switch color="error" defaultChecked size="large"onChange={() => setData({ ...data, type: !data.type })} />} sx={{width:150}} label={`Cash ${data.type? 'In':'Out'}`}/>
+    <FormControlLabel className='customInputField' control={<Switch color="error" size="large" checked={data.type} onChange={() => setData({ ...data, type: !data.type })} />} sx={{ width: 150 }} label={`Cash ${data.type ? 'In' : 'Out'}`} />
         <Autocomplete className='customInputField' disablePortal id="clear-on-escape" clearOnEscape value={data.category} options={categoryOptions} getOptionSelected={(option, value) => option.value === value.value}
  onSelect={handleChange} sx={{ width: 200}} renderInput={(params) => <TextField {...params}  name='category' label="Category" variant='filled' />}/>
         <TextField className='customInputField'  id="filled-basic" label="Amount" variant="filled" name='amount' value={data.amount} onChange={handleChange}/>
         <TextField className='customInputField' id="filled-basic" label="Description" variant="filled" name='description' value={data.description} onChange={handleChange} sx={{ width: 300 }} />
-            <Button variant='contained' color='success' sx={{height:40}} type='submit' onClick={handleSubmit}>Track</Button>
+            <Button variant='contained' color='success' sx={{height:40}} type='submit' onClick={handleSubmit}>{editData ? 'Update' : 'Track'}</Button>
         </AppBar>
       </Box>
   )
