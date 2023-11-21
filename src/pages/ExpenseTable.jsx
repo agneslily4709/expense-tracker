@@ -13,13 +13,14 @@ import { green,grey,red } from '@mui/material/colors';
 
 import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
-        const {rows,cols,setRows} = useContext(BudgetDataContext)
+        const {rows,cols,setRows,setEditData} = useContext(BudgetDataContext)
         const handleDelete = (id) => {
                 setRows((prevRows) => prevRows.filter((ele) =>ele.id!==id))
         }
         const handleEdit = (id) => {
-
-        }
+                const selectedRow = rows.find((row) => row.id === id);
+                setEditData(selectedRow);
+              };
   return (
         <>
          <Paper sx={{ width: '100%',height:440,overflowY:"scroll"}}>
