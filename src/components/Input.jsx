@@ -38,7 +38,7 @@ const Input = () => {
         <Box sx={{ flexGrow: 1}} component="form" noValidate>
         <AppBar position="static" sx={{p:1, height:"75px",backgroundColor:"#004aad",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-around',alignItems:"center"}}>
         <LocalizationProvider dateAdapter={AdapterDayjs} >
-      <DatePicker format={`DD-${new Intl.DateTimeFormat('en-US', { month: 'numeric' }).format(currentMonth)}-2023`} defaultValue={dayjs("2023-01-01")} 
+      <DatePicker format={`DD-${new Intl.DateTimeFormat('en-US', { month: 'numeric' }).format(currentMonth)}-${new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(currentMonth)}`} defaultValue={dayjs("2023-01-01")} 
  className='customInputField' name='date' onChange={(newValue) =>{
         setData({...data,date:`${newValue.$D}-${newValue.$M+1}-${newValue.$y}`})
       }}/>
