@@ -21,11 +21,13 @@ const MonthSlider = () => {
                 <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static" sx={{ p: 1, backgroundColor: "#e6c2bf", height: "55px", textAlign: "center", color: "black", display: "flex", flexDirection: "row", justifyContent: 'space-between' }}>
                 <Button variant="text" onClick={goToPreviousMonth}><ArrowCircleLeftOutlinedIcon sx={{ fontSize: 40 }} /></Button>
-                <Typography variant="h6" sx={{ p: 1 }}>
-                <Box component="span" sx={{ fontWeight: "bold" }}>
-                        {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentMonth)}
-                </Box>
-                </Typography>
+                <Box component="div" sx={{ fontWeight: "bold", display: 'flex', alignItems: 'center' }}>
+  <Typography variant="h6" sx={{ p: 1 }}>
+    {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentMonth)}
+  </Typography>
+  <Button variant='contained'>Visualize</Button>
+</Box>
+
                 <Button variant="text" onClick={goToNextMonth}><ArrowCircleRightOutlinedIcon sx={{ fontSize: 40 }} /></Button>
                 </AppBar>
                 </Box>
