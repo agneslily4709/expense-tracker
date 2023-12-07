@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import Input from './components/Input';
 import MonthSlider from './components/MonthSlider';
 import NavBar from './components/NavBar';
 import BudgetContext from './context/budgetContext';
+import ExpenseChart from './pages/ExpenseChart';
 import ExpenseTable from './pages/ExpenseTable'
 import "./Styles/App.css"
 
 function App() {
+        const [visualize,setVisualize] = useState(false)
   return (
     <div className="App">
         <BudgetContext>
@@ -14,6 +17,7 @@ function App() {
                 <MonthSlider/>
                 <Input/>
                 <ExpenseTable/>
+                <ExpenseChart/>
         </div>
         </BudgetContext>
     </div>
