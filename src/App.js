@@ -14,10 +14,9 @@ function App() {
         <BudgetContext>
         <NavBar/>
         <div className='home'>
-                <MonthSlider/>
+                <MonthSlider setVisualize={setVisualize}/>
                 <Input/>
-                <ExpenseTable/>
-                <ExpenseChart/>
+                {visualize? <ExpenseChart setVisualize={setVisualize}/> :<ExpenseTable/>}
         </div>
         </BudgetContext>
     </div>
