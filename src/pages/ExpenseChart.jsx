@@ -1,7 +1,8 @@
 import React, { useEffect,useContext } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import {BudgetDataContext} from "../context/budgetContext"
-const ExpenseChart = ({ expenseRows }) => {
+import {Button} from "@mui/material"
+const ExpenseChart = ({ expenseRows, setVisualize }) => {
         const {rows,cols,setRows,setEditData} = useContext(BudgetDataContext)
         console.log(rows);
         const categoryData = rows.reduce((acc, expense) => {
@@ -19,6 +20,9 @@ const ExpenseChart = ({ expenseRows }) => {
               }));
   return (
     <div>
+        <Button onClick={()=>setVisualize(false)}>
+                Back
+        </Button>
  <PieChart
       series={[{ data: pieChartData }]}
       width={400}
