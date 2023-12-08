@@ -7,7 +7,7 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import { BudgetDataContext } from '../context/budgetContext.js'
 
-const MonthSlider = () => {
+const MonthSlider = ({setVisualize}) => {
         const {currentMonth,setCurrentMonth} = useContext(BudgetDataContext)
         const goToPreviousMonth = () => {
                 setCurrentMonth((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() - 1));
@@ -25,7 +25,7 @@ const MonthSlider = () => {
   <Typography variant="h6" sx={{ p: 1 }}>
     {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentMonth)}
   </Typography>
-  <Button variant='contained'>Visualize</Button>
+  <Button variant='contained' onClick={() => setVisualize(true)}>Visualize</Button>
 </Box>
 
                 <Button variant="text" onClick={goToNextMonth}><ArrowCircleRightOutlinedIcon sx={{ fontSize: 40 }} /></Button>
