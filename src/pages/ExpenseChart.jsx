@@ -1,4 +1,4 @@
-import React, { useEffect,useContext } from 'react';
+import React, { useContext } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import {BudgetDataContext} from "../context/budgetContext"
 import {Button} from "@mui/material"
