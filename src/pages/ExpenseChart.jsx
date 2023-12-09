@@ -19,9 +19,7 @@ const ExpenseChart = ({ setVisualize }) => {
               }));
   return (
     <div>
-        <Button variant='contained' onClick={()=>setVisualize(false)}>
-                Back
-        </Button>
+        <Button variant='contained' onClick={()=>setVisualize(false)}> Back </Button>
  <PieChart
       series={[{ data: pieChartData }]}
       width={700}
