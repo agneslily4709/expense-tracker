@@ -15,7 +15,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 const Input = () => {
         const {setRows,editData,currentMonth} = useContext(BudgetDataContext)
 
-        const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Others"]
+        const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Utilities","Mortage","Others"]
         const [data,setData] =  useState({id:"",date:"",type:true,category:"",amount:"",description:"",})
 
         const handleChange = (e) => {
