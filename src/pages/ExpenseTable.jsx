@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BudgetDataContext } from '../context/budgetContext.js'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +13,9 @@ import { green,grey,red } from '@mui/material/colors';
 
 import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
-        const {rows,cols,setRows,setEditData} = useContext(BudgetDataContext)
+        const {rows,cols,setRows,setEditData,currentMonth} = useContext(BudgetDataContext)
+        const [data,setData] = useState(null)
+        console.log(rows);
         const handleDelete = (id) => {
                 setRows((prevRows) => prevRows.filter((ele) =>ele.id!==id))
         }
@@ -21,6 +23,13 @@ const ExpenseTable = () => {
                 const selectedRow = rows.find((row) => row.id === id);
                 setEditData(selectedRow);
               };
+        useEffect(()=>{
+                setData(rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth)])
+        },[currentMonth])
+        useEffect(()=>{
+                console.log(data);
+                console.log(new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth));
+        },[data])
   return (
         <>
          <Paper sx={{ width: '100%',height:440,overflowY:"scroll"}}>
@@ -32,7 +41,7 @@ const ExpenseTable = () => {
                                 </TableRow>
                         </TableHead>
                         <TableBody>
-                                {rows && rows.map((row,idx) => (
+                                {data && data.map((row,idx) => (
                                         <TableRow sx={{backgroundColor:`${(row.type? green[100] : red[100])}`, border:`2px solid ${grey[900]}`}} key={idx} >
                                         <StyledTableCell align='center'> {row.date} </StyledTableCell>
                                         <StyledTableCell  align="center">{row.category}</StyledTableCell>
