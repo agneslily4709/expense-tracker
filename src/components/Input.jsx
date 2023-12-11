@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Input = () => {
-        const {setRows,editData,current} = useContext(BudgetDataContext)
+        const {rows,setRows,editData,current} = useContext(BudgetDataContext)
 
         const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Utilities","Mortage","Others"]
         const [data,setData] =  useState({id:"",date:"",type:true,category:"",amount:"",description:"",})
@@ -25,8 +25,17 @@ const Input = () => {
         const handleSubmit = (e) => {
                 e.preventDefault()
                 data.id = parseInt(Date.now() * Math.random())
-                setRows((prevRows) => [...prevRows, data]);
-                setData({id:"",date:"",type:true,category:"",amount:"",description:""})
+                console.log(data);
+                setRows((prevRows) => {
+                        const updatedRows = { ...prevRows };
+                       if (current.month in updatedRows) {
+                          updatedRows[current.month] = [...updatedRows[current.month], data];
+                        } else {
+                          updatedRows[current.month] = [data];
+                        }
+                      
+                        return updatedRows;
+                      });
         }
         
   useEffect(() => {
@@ -36,6 +45,7 @@ const Input = () => {
       }, [editData]);
       useEffect(()=>{
         console.log(current.month,current.year);
+        console.log(rows);
       },[])
   return (
         <Box sx={{ flexGrow: 1}} component="form" noValidate>
