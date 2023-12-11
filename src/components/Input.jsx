@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Input = () => {
-        const {setRows,editData,currentMonth} = useContext(BudgetDataContext)
+        const {setRows,editData,current} = useContext(BudgetDataContext)
 
         const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Utilities","Mortage","Others"]
         const [data,setData] =  useState({id:"",date:"",type:true,category:"",amount:"",description:"",})
@@ -34,11 +34,14 @@ const Input = () => {
           setData(editData);
         }
       }, [editData]);
+      useEffect(()=>{
+        console.log(current.month,current.year);
+      },[])
   return (
         <Box sx={{ flexGrow: 1}} component="form" noValidate>
         <AppBar position="static" sx={{p:1, height:"75px",backgroundColor:"#004aad",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-around',alignItems:"center"}}>
         <LocalizationProvider dateAdapter={AdapterDayjs} >
-      <DatePicker format={`DD-${new Intl.DateTimeFormat('en-US', { month: 'numeric' }).format(currentMonth)}-${new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(currentMonth)}`} defaultValue={dayjs("2023-01-01")} 
+      <DatePicker format={`DD-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${current.year}`} defaultValue={dayjs("2023-01-01")} 
  className='customInputField' name='date' onChange={(newValue) =>{
         setData({...data,date:`${newValue.$D}-${newValue.$M+1}-${newValue.$y}`})
       }}/>
