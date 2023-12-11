@@ -9,12 +9,23 @@ import { BudgetDataContext } from '../context/budgetContext.js'
 
 const MonthSlider = ({setVisualize}) => {
         const {current,setCurrent} = useContext(BudgetDataContext)
+
         const goToPreviousMonth = () => {
-                setCurrent((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() - 1));
-        };
+                const currentDate = new Date(`${current.month} 1, ${current.year}`);
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                setCurrent({
+                        month: currentDate.toLocaleString('default', { month: 'long' }),
+                        year: currentDate.getFullYear(),
+                      });
+              };
 
         const goToNextMonth = () => {
-                setCurrent((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() + 1));
+                const currentDate = new Date(`${current.month} 1, ${current.year}`);
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                setCurrent({
+                        month: currentDate.toLocaleString('default', { month: 'long' }),
+                        year: currentDate.getFullYear(),
+                      });
         };
 
         return (
