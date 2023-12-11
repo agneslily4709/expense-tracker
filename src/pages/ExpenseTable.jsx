@@ -13,7 +13,7 @@ import { green,grey,red } from '@mui/material/colors';
 
 import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
-        const {rows,cols,setRows,setEditData,currentMonth} = useContext(BudgetDataContext)
+        const {rows,cols,setRows,setEditData,current} = useContext(BudgetDataContext)
         const [data,setData] = useState(null)
         console.log(rows);
         const handleDelete = (id) => {
@@ -24,8 +24,8 @@ const ExpenseTable = () => {
                 setEditData(selectedRow);
               };
         useEffect(()=>{
-                setData(rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth)])
-        },[currentMonth])
+                setData(rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(current)])
+        },[current])
 
   return (
         <>
