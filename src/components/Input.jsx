@@ -43,10 +43,6 @@ const Input = () => {
           setData(editData);
         }
       }, [editData]);
-      useEffect(()=>{
-        console.log(current.month,current.year);
-        console.log(rows);
-      },[])
   return (
         <Box sx={{ flexGrow: 1}} component="form" noValidate>
         <AppBar position="static" sx={{p:1, height:"75px",backgroundColor:"#004aad",textAlign:"center",color:"black",display:"flex",flexDirection:"row", justifyContent: 'space-around',alignItems:"center"}}>
