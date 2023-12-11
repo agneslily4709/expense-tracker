@@ -26,10 +26,7 @@ const ExpenseTable = () => {
         useEffect(()=>{
                 setData(rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth)])
         },[currentMonth])
-        useEffect(()=>{
-                console.log(data);
-                console.log(new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth));
-        },[data])
+
   return (
         <>
          <Paper sx={{ width: '100%',height:440,overflowY:"scroll"}}>
