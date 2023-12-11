@@ -23,7 +23,7 @@ const MonthSlider = ({setVisualize}) => {
                 <Button variant="text" onClick={goToPreviousMonth}><ArrowCircleLeftOutlinedIcon sx={{ fontSize: 40 }} /></Button>
                 <Box component="div" sx={{ fontWeight: "bold", display: 'flex', alignItems: 'center' }}>
   <Typography variant="h6" sx={{ p: 1 }}>
-    {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(current)}
+    {`${current.month} - ${current.year}`}
   </Typography>
   <Button variant='contained' onClick={() => setVisualize(true)}>Visualize</Button>
 </Box>
