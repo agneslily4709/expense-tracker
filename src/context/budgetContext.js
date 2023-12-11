@@ -41,7 +41,11 @@ width: 160,
 const BudgetContext = ({children}) => {
         const [rows, setRows] = useState(expenseRows);
         const [editData, setEditData] = useState(null);
-        const [currentMonth, setCurrentMonth] = useState(new Date());
+        const [current, setCurrent] = useState(
+                {
+                        month:new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date()),
+                        year:new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(new Date())
+                });
         const data = {
                 userName:"Agnes Lily",
                 rows: rows,
@@ -49,8 +53,8 @@ const BudgetContext = ({children}) => {
                 setRows:setRows,
                 editData:editData,
                 setEditData:setEditData,
-                currentMonth:currentMonth, 
-                setCurrentMonth:setCurrentMonth
+                current:current, 
+                setCurrent:setCurrent
         }
 
         return (
