@@ -8,13 +8,13 @@ import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutl
 import { BudgetDataContext } from '../context/budgetContext.js'
 
 const MonthSlider = ({setVisualize}) => {
-        const {currentMonth,setCurrentMonth} = useContext(BudgetDataContext)
+        const {current,setCurrent} = useContext(BudgetDataContext)
         const goToPreviousMonth = () => {
-                setCurrentMonth((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() - 1));
+                setCurrent((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() - 1));
         };
 
         const goToNextMonth = () => {
-                setCurrentMonth((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() + 1));
+                setCurrent((prevMonth) => new Date(prevMonth.getFullYear(), prevMonth.getMonth() + 1));
         };
 
         return (
@@ -23,7 +23,7 @@ const MonthSlider = ({setVisualize}) => {
                 <Button variant="text" onClick={goToPreviousMonth}><ArrowCircleLeftOutlinedIcon sx={{ fontSize: 40 }} /></Button>
                 <Box component="div" sx={{ fontWeight: "bold", display: 'flex', alignItems: 'center' }}>
   <Typography variant="h6" sx={{ p: 1 }}>
-    {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentMonth)}
+    {new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(current)}
   </Typography>
   <Button variant='contained' onClick={() => setVisualize(true)}>Visualize</Button>
 </Box>
