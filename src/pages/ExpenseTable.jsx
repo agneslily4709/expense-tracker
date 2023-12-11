@@ -24,8 +24,8 @@ const ExpenseTable = () => {
                 setEditData(selectedRow);
               };
         useEffect(()=>{
-                setData(rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(current)])
-        },[current])
+                setData(rows[current.month])
+        },[current,data])
 
   return (
         <>
