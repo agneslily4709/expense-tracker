@@ -3,8 +3,8 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import {BudgetDataContext} from "../context/budgetContext"
 import {Box, Button} from "@mui/material"
 const ExpenseChart = ({ setVisualize }) => {
-        const {rows,currentMonth} = useContext(BudgetDataContext)
-        const categoryData = rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(currentMonth)].reduce((acc, expense) => {
+        const {rows,current} = useContext(BudgetDataContext)
+        const categoryData = rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(current)].reduce((acc, expense) => {
                 if (expense.type === false) {
                   const category = expense.category;
                   acc[category] = (acc[category] || 0) + expense.amount;
