@@ -25,7 +25,6 @@ const Input = () => {
         const handleSubmit = (e) => {
                 e.preventDefault()
                 data.id = parseInt(Date.now() * Math.random())
-                console.log(data);
                 setRows((prevRows) => {
                         const updatedRows = { ...prevRows };
                        if (current.month in updatedRows) {
@@ -33,7 +32,6 @@ const Input = () => {
                         } else {
                           updatedRows[current.month] = [data];
                         }
-                      
                         return updatedRows;
                       });
         }
