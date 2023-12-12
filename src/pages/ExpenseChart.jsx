@@ -4,7 +4,7 @@ import {BudgetDataContext} from "../context/budgetContext"
 import {Box, Button} from "@mui/material"
 const ExpenseChart = ({ setVisualize }) => {
         const {rows,current} = useContext(BudgetDataContext)
-        const categoryData = rows[new Intl.DateTimeFormat('en-US', { month: 'long'}).format(current)].reduce((acc, expense) => {
+        const categoryData = rows[current.month].reduce((acc, expense) => {
                 if (expense.type === false) {
                   const category = expense.category;
                   acc[category] = (acc[category] || 0) + expense.amount;
