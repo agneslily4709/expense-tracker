@@ -15,7 +15,7 @@ import {StyledTableCell} from "../Styles/CustomStyles.js"
 const ExpenseTable = () => {
         const {rows,cols,setRows,setEditData,current} = useContext(BudgetDataContext)
         const [data,setData] = useState(null)
-        console.log(rows);
+
         const handleDelete = (id) => {
                 setRows((prevRows) => prevRows.filter((ele) =>ele.id!==id))
         }
@@ -25,7 +25,7 @@ const ExpenseTable = () => {
               };
         useEffect(()=>{
                 setData(rows[current.month])
-        },[current,data])
+        },[current.month,rows,data])
 
   return (
         <>
