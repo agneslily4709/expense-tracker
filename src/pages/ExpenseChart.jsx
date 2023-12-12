@@ -5,20 +5,21 @@ import { Box, Button } from '@mui/material';
 
 const ExpenseChart = ({ setVisualize }) => {
   const { rows, current } = useContext(BudgetDataContext);
-  console.log(rows[current.month]);
-  const categoryOptions = ['Rent','Income', 'Travel', 'Food', 'Entertainment', 'Bonus', 'Utilities', 'Mortgage', 'Others'];
+
+  const categoryOptions = ['Rent', 'Travel', 'Food', 'Entertainment', 'Bonus', 'Utilities', 'Mortgage', 'Others'];
 
   const categoryData = categoryOptions.reduce((acc, category) => {
     acc[category] = 0;
     return acc;
   }, {});
+
   rows[current.month].forEach((expense) => {
     if (expense.type === false) {
       const category = expense.category;
       categoryData[category] += expense.amount;
     }
   });
-console.log(categoryData);
+
   const pieChartData = Object.entries(categoryData).map(([label, value], index) => ({
     id: index,
     value,
