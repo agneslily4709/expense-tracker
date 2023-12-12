@@ -17,6 +17,11 @@ const expenseRows = {
                 { id: 202, date: "12-02-2023", type: false, category: "Food", amount: 100, description: "Groceries for the month" },
                 { id: 203, date: "18-02-2023", type: false, category: "Entertainment", amount: 50, description: "Movie night" },
                 { id: 204, date: "25-02-2023", type: true, category: "Income", amount: 5500, description: "Salary Credited" },
+                { id: 205, date: "3-03-2023", type: false, category: "Travel", amount: 200, description: "Weekend getaway" },
+                { id: 206, date: "10-03-2023", type: false, category: "Bonus", amount: 500, description: "Year-end bonus" },
+                { id: 207, date: "15-03-2023", type: false, category: "Utilities", amount: 150, description: "Electricity and water bills" },
+                { id: 208, date: "22-03-2023", type: false, category: "Mortgage", amount: 1200, description: "Monthly mortgage payment" },
+                { id: 209, date: "28-03-2023", type: false, category: "Others", amount: 75, description: "Miscellaneous expenses" }
         ]
 }
 const expenseCols = [
