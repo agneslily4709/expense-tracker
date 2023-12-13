@@ -17,10 +17,21 @@ const ExpenseTable = () => {
         const [data,setData] = useState(null)
 
         const handleDelete = (id) => {
-                setRows((prevRows) => prevRows.filter((ele) =>ele.id!==id))
-        }
+                setRows((prevRows) => {
+                  if (current.month in prevRows) {
+                    return {
+                      ...prevRows,
+                      [current.month]: prevRows[current.month].filter((ele) => ele.id !== id),
+                    };
+                  }
+                  // If current.month doesn't exist, return the original rows
+                  return prevRows;
+                });
+              };
+              
         const handleEdit = (id) => {
-                const selectedRow = rows.find((row) => row.id === id);
+                const selectedRow = rows[current.month].find((row) => row.id === id);
+                console.log(selectedRow);
                 setEditData(selectedRow);
               };
         useEffect(()=>{
