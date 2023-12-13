@@ -13,7 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Input = () => {
-        const {rows,setRows,editData,current} = useContext(BudgetDataContext)
+        const {rows,setRows,setEditData,editData,current} = useContext(BudgetDataContext)
 
         const categoryOptions = ["Income","Travel","Food","Entertainment","Bonus","Utilities","Mortage","Others"]
         const [data,setData] =  useState({id:"",date:"",type:true,category:"",amount:"",description:"",})
@@ -23,18 +23,32 @@ const Input = () => {
         }
 
         const handleSubmit = (e) => {
-                e.preventDefault()
-                data.id = parseInt(Date.now() * Math.random())
+                e.preventDefault();
+                data.id = parseInt(Date.now() * Math.random());
+              
                 setRows((prevRows) => {
-                        const updatedRows = { ...prevRows };
-                       if (current.month in updatedRows) {
-                          updatedRows[current.month] = [...updatedRows[current.month], data];
-                        } else {
-                          updatedRows[current.month] = [data];
-                        }
-                        return updatedRows;
-                      });
-        }
+                  const updatedRows = { ...prevRows };
+              
+                  if (editData) {
+                    const existingIndex = updatedRows[current.month].findIndex(item => item.id === editData.id);
+              
+                    if (existingIndex !== -1) {
+                      updatedRows[current.month][existingIndex] = data;
+                    }
+                  } else {
+                    if (current.month in updatedRows) {
+                      updatedRows[current.month] = [...updatedRows[current.month], data];
+                    } else {
+                      updatedRows[current.month] = [data];
+                    }
+                  }
+              
+                  return updatedRows;
+                });
+                setEditData(null);
+                setData({id:"",date:"",type:true,category:"",amount:"",description:"",});
+              };
+              
         
   useEffect(() => {
         if (editData) {
