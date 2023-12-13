@@ -28,21 +28,14 @@ const Input = () => {
               
                 setRows((prevRows) => {
                   const updatedRows = { ...prevRows };
-              
-                  if (editData) {
+                if (editData) {
                     const existingIndex = updatedRows[current.month].findIndex(item => item.id === editData.id);
-              
-                    if (existingIndex !== -1) {
-                      updatedRows[current.month][existingIndex] = data;
-                    }
-                  } else {
-                    if (current.month in updatedRows) {
-                      updatedRows[current.month] = [...updatedRows[current.month], data];
-                    } else {
-                      updatedRows[current.month] = [data];
-                    }
+                    if (existingIndex !== -1)  updatedRows[current.month][existingIndex] = data;
+                  } 
+                else {
+                    if (current.month in updatedRows) updatedRows[current.month] = [...updatedRows[current.month], data];
+                   else updatedRows[current.month] = [data];
                   }
-              
                   return updatedRows;
                 });
                 setEditData(null);
