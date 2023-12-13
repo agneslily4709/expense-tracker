@@ -24,7 +24,6 @@ const ExpenseTable = () => {
                       [current.month]: prevRows[current.month].filter((ele) => ele.id !== id),
                     };
                   }
-                  // If current.month doesn't exist, return the original rows
                   return prevRows;
                 });
               };
