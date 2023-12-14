@@ -7,7 +7,7 @@ const ExpenseChart = ({ setVisualize }) => {
   const { rows, current } = useContext(BudgetDataContext);
 
   const categoryOptions = ['Rent', 'Travel', 'Food', 'Entertainment', 'Bonus', 'Utilities', 'Mortgage', 'Others'];
-
+const colorOptions = ["red","blue","green","orange","pink","yellow","purple","gray"]
   const categoryData = categoryOptions.reduce((acc, category) => {
     acc[category] = 0;
     return acc;
@@ -24,14 +24,15 @@ const ExpenseChart = ({ setVisualize }) => {
     id: index,
     value,
     label,
+    color:colorOptions[index]
   }));
-
+console.log(pieChartData);
   return (
     <div>
       <Button variant="contained" onClick={() => setVisualize(false)}>
         Back
       </Button>
-      <PieChart series={[{ data: pieChartData }]} width={700} height={400} />
+      <PieChart colors={colorOptions} series={[{ data: pieChartData }]} width={700} height={400} />
     </div>
   );
 };
