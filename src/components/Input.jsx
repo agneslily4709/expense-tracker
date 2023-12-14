@@ -58,8 +58,19 @@ const Input = () => {
       }}/>
     </LocalizationProvider>
     <FormControlLabel className='customInputField' control={<Switch color="error" size="large" checked={data.type} onChange={() => setData({ ...data, type: !data.type })} />} sx={{ width: 150 }} label={`Cash ${data.type ? 'In' : 'Out'}`} />
-        <Autocomplete className='customInputField' disablePortal id="clear-on-escape" clearOnEscape value={data.category} options={categoryOptions} getOptionSelected={(option, value) => option.value === value.value}
- onSelect={handleChange} sx={{ width: 200}} renderInput={(params) => <TextField {...params}  name='category' label="Category" variant='filled' />}/>
+    <Autocomplete
+  className='customInputField'
+  disablePortal
+  id="clear-on-escape"
+  clearOnEscape
+  value={data.category}
+  options={categoryOptions}
+  getOptionSelected={(option, value) => option === value} // or adjust based on your data structure
+  onChange={(event, newValue) => handleChange(newValue)}
+  sx={{ width: 200 }}
+  renderInput={(params) => <TextField {...params} name='category' label="Category" variant='filled' />}
+/>
+
         <TextField className='customInputField'  id="filled-basic" label="Amount" variant="filled" name='amount' value={data.amount} onChange={handleChange}/>
         <TextField className='customInputField' id="filled-basic" label="Description" variant="filled" name='description' value={data.description} onChange={handleChange} sx={{ width: 300 }} />
             <Button variant='contained' color='success' sx={{height:40}} type='submit' onClick={handleSubmit}>{editData ? 'Update' : 'Track'}</Button>
